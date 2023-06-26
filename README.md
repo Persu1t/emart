@@ -44,3 +44,9 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+The main idea is to create a minimal e-commerce website that can handle tasks such as loading product data from a third-party API and then showing it on the home page. Following that, we can add the products to the cart, from which we can remove them if we no longer require them. And finally, we can checkout or make a payment using the Razorpay payment gateway in test mode. You can see your purchase history also.
+
+This project improved my understanding of the Redux toolkit, which is used for state management, as well as reduced my extra tasks, such as creating users, loading products, and working in the cart section.This project also provided me with the opportunity to work on Firebase authentication by integrating it with email-password based login.As the project progressed, the concept of react-routing became clearer.
+
+The problem faced by me during the project is working with local storage, which has scope for improvement in this project. Other libraries can be used to help with the user persistence process. And also in db showing user Specific purchase history.

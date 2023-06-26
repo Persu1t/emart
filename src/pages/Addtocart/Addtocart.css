@@ -1,0 +1,160 @@
+.list{
+    display: flex;
+    flex-direction: column;
+    gap: 20vh;
+}
+.cart-table {
+    display: flex;
+    flex: 10 1;
+    flex-direction: column;
+    gap: 20px
+}
+
+.cart-product{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.row-box {
+    align-items: center;
+    display: flex;
+    flex: 1 1;
+    justify-content: center;
+    text-align: center;
+}
+.headings{
+    font-size: small;
+}
+.cart-img img{
+    height: 20vh;
+    width: 15vw;
+}
+
+.item-info{
+    font-size: small;
+}
+
+.remove-btn{
+    border: none;
+    background-color: white;
+    font-size: large;
+}
+
+.cart-summary{
+    background-color: rgb(243, 243, 246);
+    width: 95%;
+    margin: auto;
+    padding: 5px;
+}
+
+.Summary-row{
+    display: flex;
+    justify-content: space-between;
+}
+.summary-info{
+    font-size: small;
+}
+
+.note{
+    margin:5vh auto ;
+    text-align: center;
+}
+
+.payment-btn{
+    margin: auto;
+    background-color: rgb(61, 185, 61);
+    color: aliceblue;
+    border-radius: 8px;
+    font-size: 2vh;
+}
+
+@media only screen and (min-width: 600px) {
+    .cart-img img{
+        height: 25vh;
+        width: 20vw;
+    }
+
+    .headings{
+        font-size: medium;
+    }
+    .item-info{
+        font-size: medium;
+    }
+    .remove-btn{
+        border: none;
+        font-size: 2.9vh;
+    }
+
+    .cart-summary{
+        background-color: rgb(243, 243, 246);
+        width: 95%;
+        margin: auto;
+        padding: 10px;
+    }
+
+    .payment-info{
+        font-size: medium;
+    }
+    .summary-info{
+        font-size: medium;
+    }
+    .payment-btn{
+        margin: auto;
+        background-color: rgb(61, 185, 61);
+        color: aliceblue;
+        border-radius: 8px;
+        font-size: 2.5vh;
+    }
+    .note b{
+        font-size: medium;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .cart-img img{
+        height: 30vh;
+        width: 15vw;
+    }
+
+    .headings{
+        font-size: large;
+    }
+
+    .item-info{
+        font-size: large;
+    }
+
+    .remove-btn{
+        border: none;
+        font-size: 3.5vh;
+    }
+
+    .cart-summary{
+        background-color: rgb(243, 243, 246);
+        width: 95%;
+        margin: auto;
+        padding: 10px;
+    }
+
+    .payment-info{
+        font-size: large;
+    }
+    .summary-info{
+        font-size: large;
+    }
+
+    .payment-btn{
+        margin: auto;
+        background-color: rgb(61, 185, 61);
+        color: aliceblue;
+        border-radius: 8px;
+        font-size: 3vh;
+    }
+
+    .note b{
+        font-size: large;
+    }
+
+}

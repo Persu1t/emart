@@ -1,0 +1,31 @@
+.navbar-list{
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: rgb(11, 9, 9);
+    height: 5.5vh;
+    margin: 0;
+    padding: 0;
+}
+.navbar-list-item{
+    color: aliceblue;
+}
+#logout:hover{
+    cursor: pointer;
+}
+#icon{
+    color: aliceblue;
+    font-size: large;
+}
+
+@media only screen and (min-width: 1200px) {
+    .navbar-list-item{
+        color: aliceblue;
+        font-size: larger;
+    }
+    #icon{
+        color: aliceblue;
+        font-size: x-large;
+    }
+}

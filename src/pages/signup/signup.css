@@ -1,0 +1,175 @@
+.heading{
+    text-align: center;
+    font-size: medium;
+    margin-top: 1vh;
+}
+
+.form-container{
+    height: 90vh;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-signin-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-feilds-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.input-field{
+    margin-top: 2vh;
+    width: 72vw;
+    font-size: small;
+    border: 0.5px solid black;
+}
+
+.btn-container{
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+}
+
+.signin-btn{
+    width: 32vw;
+    margin: auto;
+    font-size: small;
+    background: rgb(55, 204, 55);
+    color: black
+}
+.register-btn{
+    border: 1px solid rgb(21, 21, 21);
+    padding: 3.5px;
+    background: blue;
+    color: aliceblue;
+}
+
+@media only screen and (min-width: 600px) {
+    .heading{
+        text-align: center;
+        font-size: medium;
+        margin-top: 1vh;
+    }
+
+    .form-container{
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .register-signin-form{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .input-feilds-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    
+    .input-field{
+        margin-top: 2vh;
+        width: 45vw;
+        font-size: medium;
+    }
+
+    .btn-container{
+        margin-top: 2vh;
+        display: flex;
+        justify-content: center;
+    }
+
+    .signin-btn{
+        width: 30vw;
+        font-size: medium;
+        background: rgb(55, 204, 55);
+        color: black
+    }
+    .register-btn{
+        border: 1px solid rgb(21, 21, 21);
+        padding: 3.5px;
+        background: blue;
+        color: aliceblue;
+    }
+
+}
+
+@media only screen and (min-width: 768px) {
+    .heading{
+        text-align: center;
+        font-size: large;
+        margin-top: 1vh;
+    }
+
+    .input-field{
+        margin-top: 2vh;
+        width: 38vw;
+        font-size: medium;
+    }
+
+    .signin-btn{
+        width: 19vw;
+        font-size: medium;
+        background: rgb(55, 204, 55);
+        color: black
+    }
+
+}
+
+@media only screen and (min-width: 992px) {
+    .heading{
+        text-align: center;
+        font-size: larger;
+        margin-top: 1vh;
+    }
+
+    .input-field{
+        margin-top: 2vh;
+        width: 35vw;
+        font-size: medium;
+    }
+
+    .signin-btn{
+        width: 17.5vw;
+        font-size: medium;
+        background: rgb(55, 204, 55);
+        color: black
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .heading{
+        text-align: center;
+        font-size: x-large;
+        margin-top: 1vh;
+    }
+
+    .input-field{
+        margin-top: 2vh;
+        width: 22vw;
+        font-size: medium;
+    }
+
+    .signin-btn{
+        width: 11vw;
+        font-size: medium;
+        background: rgb(55, 204, 55);
+        color: black
+    }
+    .register-btn:hover{
+        cursor: pointer;
+        background-color: aliceblue;
+        color: blue;
+    }
+}
