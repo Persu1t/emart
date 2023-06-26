@@ -47,6 +47,8 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_MESSAGE_ID,
   appId: process.env.REACT_APP_APP_ID,
 };
+
+
 5. Create an Razorpay account and consult Docs Razorpay for payment gateway integration. Razorpay will provide you with a unique ID,   which you can use in the filename "cart.js."Add the razorpay Id to the '.env' file as follows:
 REACT_APP_RAZORPAY_ID = "Your Razorpay Id";
 and replace the key in Addtocart.js
