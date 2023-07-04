@@ -37,6 +37,7 @@ function ProductDetailsPage({ closeModal }) {
             console.log("fetching", fetchingCommets)
             setCommented(fetchingCommets)
         })
+        console.log(unsub)
     },[])
 
     useEffect(()=>{
