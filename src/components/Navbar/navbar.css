@@ -1,5 +1,9 @@
+.navbar-container{
+    width: 100vw;
+}
 .navbar-list{
     list-style: none;
+    width: 100vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -10,10 +14,13 @@
 }
 .navbar-list-item{
     color: aliceblue;
+    font-size: small;
 }
+
 #logout:hover{
     cursor: pointer;
 }
+
 #icon{
     color: aliceblue;
     font-size: large;

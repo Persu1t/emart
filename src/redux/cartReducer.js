@@ -1,4 +1,3 @@
-// importing createSlice from redux toolkit
 import { createSlice } from "@reduxjs/toolkit";
 
 // parsing the data in object form from the local storage
@@ -69,3 +68,4 @@ const cartSlice = createSlice({
 export const cartReducer = cartSlice.reducer
 export const actions = cartSlice.actions
 export const cartSelect = (state)=> state.cartReducer
+

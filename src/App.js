@@ -13,6 +13,7 @@ import { Provider } from 'react-redux'
 // importing BrowserRouter, Routes, Route, Navigate from the react-router-dom for the routing purpose
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/productListing/home';
+// import ProductDetailsPage from './pages/ProductsDetails/productsdetails';
 import Signup from './pages/signup/signup';
 import Cart from './pages/Addtocart/Addtocart';
 import OrderHistory from './pages/orderHistory/orderHistory';

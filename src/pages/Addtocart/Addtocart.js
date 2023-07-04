@@ -36,7 +36,7 @@ function Cart(){
     //  function handling payment and adding docs to the db
     async function handleClick(){
         const options = {
-            key: process.env.REACT_APP_RAZORPAY_ID,
+            key: "rzp_test_FcZZYzIdILvpzz",
             amount: Math.ceil(totalPrice * 81.92 * 1.18 * 100),
             currency: "INR",
             name: "Don't@ShopMe",

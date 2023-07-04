@@ -3,21 +3,35 @@ import { useDispatch } from "react-redux";
 import { actions } from "../../redux/cartReducer";
 // toast imported
 import { toast } from 'react-toastify';
+import { action } from "../../redux/productReducer"
+import ProductDetailsPage from "../ProductsDetails/productsdetails";
 import "./product.css"
+import { useState } from "react";
 export default function Product({ product }){
     // using dispatch method
     const dispatch = useDispatch()
+    const [showProductDetail, setShowProductDetail] = useState(false)
     // function handle click for adding products to the cart
     const handleClick = ()=>{
         dispatch(actions.addProducts(product))
         toast.success("Product added. If you want to add this item more click on button again")
     }
+    const handleImageClick = ()=>{
+        dispatch(action.productsPage(product))
+        setShowProductDetail(true)
+    }
+
+    const closeModal = ()=>{
+        setShowProductDetail(false)
+    }
+
     return(
         <>
         <div className="productDiv">
             <div className="product-image">
                 {/* image of the product */}
-                <img className="image" src={product.image} alt="" />
+                <img className="image" src={product.image} alt="" onClick={handleImageClick} />
+                
             </div>
             {/* product title */}
             <h3 className="product-info">{product.title.slice(0, 35)}+...</h3>
@@ -28,6 +42,8 @@ export default function Product({ product }){
                 Add to Cart
             </button>
         </div>
+        {showProductDetail && <ProductDetailsPage closeModal={closeModal}/>}
         </>
+         
     )
 }

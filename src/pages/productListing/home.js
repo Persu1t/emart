@@ -5,18 +5,18 @@ import { productSelector } from "../../redux/productReducer";
 import { fetchProductItems } from "../../redux/productReducer";
 import "./home.css"
 import { useEffect, useRef, useState } from "react";
-
 import Product from "../../components/Product component/product";
 import Navbars from '../../components/Navbar/navbar';
+
 export default function Home() {
   // const [product, setProduct] = useState([])
   const dispatch = useDispatch()
   const searchRef = useRef(null)
+  // const user = useSelector(userSelect)
   const [searchQuery, setSearchQuery] = useState("")
   const [searchArray, setSearchArray] = useState([])
   // destructuring data from the productReducer
   const { data } = useSelector(productSelector);
-
   // handling the searched products and setting the search products from data array to searchArray
   function handleSearch(){
     let qr = searchRef.current.value;
@@ -31,11 +31,12 @@ export default function Home() {
     // setting the searchArray to the array of product searched
     setSearchArray(arr);
     
-  }
+}
   // useEffect to render the all the products from the api
   useEffect(()=>{
     dispatch(fetchProductItems())
   },[dispatch])
+
   return (
     <>
       <nav className="Navbar"><Navbars/></nav>

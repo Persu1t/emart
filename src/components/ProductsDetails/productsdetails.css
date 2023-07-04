@@ -1,0 +1,124 @@
+.modal-wrapper{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(189, 189, 189, 0.9);
+}
+
+.modal-container{
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    align-items: center;
+    height: 70vh;
+    width: 100%;
+    background-color: white;
+    overflow-y: scroll;
+}
+
+.productAllDetails {
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    height: 70vh;
+    
+}
+
+.img-container{
+    width: 30%;
+    display: flex;
+    align-items: center;
+}
+
+.img-container img{
+    height: 34vh;
+    width: 32vw;
+}
+
+.product-details{
+    width: 50%;
+}
+
+.add-to-cart-btn-container{
+    margin-bottom: 1vh;
+}
+.add-to-cart-btn-container button{
+    width: 15vw;
+    background: #e60731;
+    font-size: initial;
+    font-family: sans-serif;
+    color: white;
+}
+.comment-section-contsiner{
+    margin-bottom: 2vh;
+}
+
+.Comment-section{
+    display: flex;
+    justify-content: space-around;
+}
+
+.comment{
+    margin-left: 2vh
+}
+@media only screen and (min-width: 600px) {
+    .img-container img{
+        height: 30vh;
+        width: 25vw;
+    }
+
+    .add-to-cart-btn-container button{
+        width: 12vw;
+        background: #e60731;
+        font-size: initial;
+        font-family: sans-serif;
+        color: white;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .img-container img{
+        height: 35vh;
+        width: 20vw;
+    }
+
+    .add-to-cart-btn-container button{
+        width: 10vw;
+        background: #e60731;
+        font-size: initial;
+        font-family: sans-serif;
+        color: white;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .img-container img{
+        height: 40vh;
+        width: 22vw;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .img-container img{
+        height: 50vh;
+        width: 15vw;
+    }
+
+    .add-to-cart-btn-container button{
+        width: 6vw;
+        background: #e60731;
+        font-size: initial;
+        font-family: sans-serif;
+        color: white;
+    }
+
+}
