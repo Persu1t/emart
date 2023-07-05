@@ -14,19 +14,6 @@ function ProductDetailsPage({ closeModal }) {
     const { productsDetails } = useSelector(productSelector)
     console.log("productsDetails", productsDetails[0]);
     useEffect(()=>{
-        // async function fetchComments() {
-        //     const snapShot = await getDocs(collection(db, "productItems"))
-
-        //     const fetchingCommets = snapShot.docs.map((doc)=>{
-        //         return{
-        //             id: doc.id,
-        //             ...doc.data()
-        //         }
-        //     })
-        //     console.log("fetching", fetchingCommets)
-        //     setCommented(fetchingCommets)
-        // }
-        // fetchComments()
         const unsub = onSnapshot(collection(db, "productItems"), (snapShot)=>{
                 const fetchingCommets = snapShot.docs.map((doc)=>{
                 return{
@@ -69,7 +56,7 @@ function ProductDetailsPage({ closeModal }) {
                                 <h4>{productsDetails[0].title}</h4>
                                 <strong>{productsDetails[0].category}</strong>
                                 <p>{productsDetails[0].description}</p>
-                                <p>Rs{((productsDetails[0].price)*81.92).toFixed(2)}</p>
+                                <p>₹{((productsDetails[0].price)*81.92).toFixed(2)}</p>
                                 <p>{productsDetails[0].rating.rate}</p>
                                 <div className="add-to-cart-btn-container">
                                     <button onClick={closeModal}>Close</button>
