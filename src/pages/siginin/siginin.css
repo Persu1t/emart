@@ -1,0 +1,36 @@
+.company-name{
+    margin-bottom: 5vh;
+    text-decoration: underline;
+}
+.login-form-container{
+    width: 100vw;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.login-form{
+    border: 3px solid transparent;
+    border-radius: 5%;
+    padding: 30px;
+    width: 25%;
+    box-shadow: 12px 7px 7px rgb(13 11 13);
+    background-color: #45c8c8;
+}
+@media only screen and (max-width: 992px) {
+    .company-name{
+        margin-bottom: 2vh;
+    }
+
+    .login-form{
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+  .login-form{
+    width: 75%;
+  }
+}
+

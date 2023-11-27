@@ -1,4 +1,4 @@
-.productDiv{
+/* .productDiv{
     border: 1px transparent rgb(13, 5, 13);
     margin: 2vh;
     width: 80vw;
@@ -123,4 +123,18 @@
         font-size: medium;
         margin-bottom: 2vh;
     }
+} */
+
+.card-body-container{
+    display: flex;
+    align-items: center;
 }
+.card{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 60%;
+    margin: auto;
+    box-shadow: 12px 7px 7px rgb(13 11 13);
+}
+

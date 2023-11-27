@@ -1,49 +1,29 @@
-import { useDispatch } from "react-redux";
-// importing action from cart reducer
-import { actions } from "../../redux/cartReducer";
-// toast imported
-import { toast } from 'react-toastify';
-import { action } from "../../redux/productReducer"
-import ProductDetailsPage from "../ProductsDetails/productsdetails";
+
+import { Link } from "react-router-dom";
+// import ProductDetailsPage from "../ProductsDetails/productsdetails";
 import "./product.css"
-import { useState } from "react";
-export default function Product({ product }){
-    // using dispatch method
-    const dispatch = useDispatch()
-    const [showProductDetail, setShowProductDetail] = useState(false)
-    // function handle click for adding products to the cart
-    const handleClick = ()=>{
-        dispatch(actions.addProducts(product))
-        toast.success("Product added. If you want to add this item more click on button again")
-    }
-    const handleImageClick = ()=>{
-        dispatch(action.productsPage(product))
-        setShowProductDetail(true)
-    }
+import { FaStar } from "react-icons/fa";
 
-    const closeModal = ()=>{
-        setShowProductDetail(false)
-    }
+export default function Product({ product }) {
 
-    return(
+    return (
         <>
-        <div className="productDiv">
-            <div className="product-image">
-                {/* image of the product */}
-                <img className="image" src={product.image} alt="" onClick={handleImageClick} />
-                
-            </div>
-            {/* product title */}
-            <h3 className="product-info">{product.title.slice(0, 35)}+...</h3>
-            {/* product price */}
-            <h4 className="product-info">₹{parseInt(product.price * 81.92)}</h4>
-            {/* add to cart button */}
-            <button className="add-to-cart-btn" onClick={handleClick}>
-                Add to Cart
-            </button>
-        </div>
-        {showProductDetail && <ProductDetailsPage closeModal={closeModal}/>}
+            
+                <div className="card mb-3">
+                    <div className="row g-0">
+                        <div className="col-md-4">
+                            <Link to={`/${product.productId}`} style={{ textDecoration: "none"}}><img src={product.image} className="img-fluid rounded-start image" alt={product.title} /></Link>
+                        </div>
+                        <div className="col-md-8 card-body-container">
+                            <div className="card-body">
+                                <Link to={`/${product.productId}`} style={{ color: "black", textDecoration: "none"}}><h5 className="card-title">{product.title}</h5></Link>
+                                <p class="card-text"> {<span>{<FaStar />}</span>}&nbsp; {product.rating.rate}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </>
-         
+
+
     )
 }

@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import "./orderHistory.css"
 // importing userSelect from signup reducer
 import { userSelect } from "../../redux/signupReducer";
-import Navbars from "../../components/Navbar/navbar";
 import Loader from "../loader/loader";
 
 function OrderHistory() {
@@ -49,9 +48,6 @@ function OrderHistory() {
 
   return (
     <>
-      <nav>
-        <Navbars />
-      </nav>
 
       {!recentOrder ? (
         <><Loader /></>

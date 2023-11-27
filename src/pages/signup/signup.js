@@ -1,126 +1,151 @@
-// I have made a single component to signup/signin. Please fill the name and everithing then click on the register button
-// if already a user just fill email and password fields and click on signin button
+
 import { useState } from "react"
 // importing createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword firebase/auth
-import { createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 // importing  auth from the firebase
 import { auth } from "../../firebaseinit"
 import { useDispatch } from "react-redux"
 // importing action from signupReducer
 import { action } from "../../redux/signupReducer"
+import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import "./signup.css"
 
-export default function Signup({setLoading}) {
+export default function Signup() {
     // setting up all the initial state required for the authentication 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
     const [name, setName] = useState("")
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    // function to signin the user with email, password
-    function signInUser(e) {
+    // Function to handle the user registration
+    async function registerUser(e) {
         e.preventDefault()
-        // setloading to true as user is signing in
-        setLoading(true)
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // if user credentials matches in the firebase dispatch login action from the signupReducer
-                dispatch(
-                    action.login({
-                        email: userCredential.user.email,
-                        displayName: userCredential.user.displayName,
-                        uid: userCredential.user.uid                   
-                    })
-                );
-                setLoading(false)
-                // notification of logged in success
-                toast.success("Logged in successfully")
-            })
-            // handling any error occured
-            .catch((err) => {
-                alert(err);
-                setLoading(false)
-                navigate("/")
-            });
-            
-    };
-// Function to handle the user registration
-    async function registerUser() {
         // Form validation
         if (!name) {
             return alert("Please enter a name")
         }
-        if(password.length <6){
+        if (password.length < 6) {
             return alert("Please enter a password greater than 6")
         }
-        if(email.length < 5){
+        if (email.length < 5) {
             return alert("Enter a valid email address")
         }
-//  Creating a new user account
+        if(password !== confirmPassword){
+            return toast.error("Passwords do not match. Please match your password", {
+                position: "bottom-right",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                theme: "light",
+              })
+        }
+        //  Creating a new user account
         await createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+
             updateProfile(userCredential.user, {
                 displayName: name,
             })
-            // dispatching login action when new user is created.
+                // dispatching login action when new user is created.
                 .then(dispatch(action.login({
                     email: userCredential.user.email,
                     displayName: name,
                     uid: userCredential.user.uid
                 })))
-                .catch((error) => {
-                    console.log(error, "User can not be updated")
-                })
-                // error handling if any error occured
-                .catch((error) => {
-                    alert(error)
-                    navigate("/")
-                });
             navigate("/")
+            toast.success("Successfully created user!", {
+                position: "bottom-right",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                theme: "light",
+            })
         })
-        
+
     }
 
     return (
+
         <>
-            <div className="form-container">
-                <div className="heading">Welcome to Dont@ShopMe. Signup/Login here.</div>
-                <form className="register-signin-form">
-                    <div className="input-feilds-container">
-                        <input type="text"
-                            placeholder="Your name (Only if you are registring)"
-                            value={name}
+            <div className ="login-form-container">
+            <h1 className="company-name">Dont@MeShop</h1>
+            <h2 className="company-name">Create Your account</h2>
+                <form className="login-form" onSubmit={(e) => registerUser(e)}>
+                <div className="mb-3">
+                        <label htmlFor="exampleInputtext" className="form-label">
+                            Name
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="exampleInputtext"
+                            aria-describedby="NamelHelp"
+                            required
+                            placeholder="Your Name here"
                             onChange={(e) => setName(e.target.value)}
-                            required
-                            className="input-field"
-                        />
-                        <input type="email"
-                            placeholder="abc@example.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="input-field"
-                        />
-                        <input type="password"
-                            placeholder="Make a strong password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            className="input-field"
                         />
                     </div>
-                    <div className="btn-container">
-                        {/* button handles signin of user */}
-                        <button className="signin-btn" type="submit" onClick={(e) => signInUser(e)}>Sign in</button>
+
+                    <div className="mb-3">
+                        <label htmlFor="exampleInputEmail1" className="form-label">
+                            Email address
+                        </label>
+                        <input
+                            type="email"
+                            className="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            placeholder="Your valid email address"
+                            required
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="exampleInputPassword1" className="form-label">
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            className="form-control"
+                            id="exampleInputPassword1"
+                            required
+                            placeholder="Type your password"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+
+                    <div className="mb-3">
+                        <label htmlFor="exampleInputConfirmPassword1" className="form-label">
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            className="form-control"
+                            id="exampleInputConfirmPassword1"
+                            required
+                            placeholder="Retype your password"
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                        />
+                    </div>
+
+                    <div className="mb-3 form-check"></div>
+                    <button className="btn btn-primary">Register</button>
+
+                    <div>
+                        <span>
+                           Already a member? &nbsp; <Link to="/siginin">Login</Link>
+                        </span>
                     </div>
                 </form>
-                <p>Not a member {""} </p>
-                {/* span handling registration of the user */}
-                    <span className="register-btn" onClick={registerUser}>Register</span>
-                
             </div>
-
         </>
     )
 }

@@ -1,4 +1,8 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import { createRoot } from 'react-dom/client';
 import './index.css';
@@ -9,9 +13,21 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
+  <>
+        <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     <Root /> 
-  </React.StrictMode>
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from "react-redux"
-import Navbars from "../../components/Navbar/navbar"
 // importing actions and cartSelect from cart reducer
 import { actions, cartSelect } from "../../redux/cartReducer"
 // importing razorpay from react-razorpay
@@ -80,7 +79,6 @@ function Cart(){
     return(
         <>
             <div className="cart">
-                <Navbars/>
                 <h2>Cart product</h2>
                 <div className="list">
                     {products.length === 0 ? <h1>Cart is empty right now...</h1>

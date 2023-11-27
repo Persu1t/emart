@@ -1,17 +1,19 @@
 // importing the createSlice and the createAsyncThunk from the redux toolkit
+import {db} from "../firebaseinit"
+import { collection, getDocs } from "firebase/firestore";
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
+
 // This is the createAsyncThunk function which deals with the Api request and asynchronous data
 const fetchItems = createAsyncThunk("productsList/getItems", async () => {
-  const res = await fetch("https://fakestoreapi.com/products");
-  const res2 = await res.json();
-  console.log(res2)
-  return res2.map((product) => product);
-
+  const snapshot = await getDocs(collection(db, "products"));
+  const products = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+  return products
 });
-let productItem = JSON.parse(localStorage.getItem("product_item"))
 const initialState = {
   data: [],
-  productsDetails: productItem?.productsDetails||[],
   isLoading: false,
   error: "",
 };
@@ -22,8 +24,7 @@ const productSlice = createSlice({
   reducers:{
     productsPage:(state, action) => {
       const id = action.payload.id;
-      state.productsDetails= ((state.data.filter((item)=> item.id === id)))
-      localStorage.setItem('product_item', JSON.stringify(state))
+      console.log(id)
     }
   },
   // extrareducers based on the promise state returened by the createAsyncThunk function
@@ -34,13 +35,12 @@ const productSlice = createSlice({
     },
     // if promise stgate is rejected
     [fetchItems.fulfilled]: (state, action) => {
-      state.data = action.payload;
+      state.data = action.payload
       state.isLoading = false;
+      state.error = "No error"
     },
     // if promise stgate is pending
     [fetchItems.rejected]: (state, action) => {
-      state.data = [];
-      state.isLoading = false;
       state.error = action.error.message;
     },
   },
