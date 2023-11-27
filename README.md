@@ -1,5 +1,5 @@
 Live project link.
-This is an very nice website
+https://glittering-frangollo-759c86.netlify.app/
 
 # Getting Started with Create React App and Redux
 
