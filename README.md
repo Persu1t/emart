@@ -1,5 +1,4 @@
 Live project link.
-https://thriving-marshmallow-834fe5.netlify.app
 This is an very nice website
 
 # Getting Started with Create React App and Redux
