@@ -84,7 +84,7 @@ function Cart() {
 
   return (
     <>
-      {products === null || JSON.parse(localStorage.getItem("cart")).length === 0 ?
+      {products === null || JSON.parse(localStorage.getItem("cart")) === null ?
         <h1>Nothing here</h1> :
         <>
           <div className="cart-list">
