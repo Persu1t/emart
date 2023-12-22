@@ -1,12 +1,13 @@
 
 import { useState } from "react"
 // importing createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword firebase/auth
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 // importing  auth from the firebase
 import { auth } from "../../firebaseinit"
 import { useDispatch } from "react-redux"
 // importing action from signupReducer
 import { action } from "../../redux/signupReducer"
+import { actions } from "../../redux/googleLoginReducer"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
@@ -20,6 +21,22 @@ export default function Signup() {
     const [name, setName] = useState("")
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const provider = new GoogleAuthProvider()
+
+    const siginInWithGoogle = () => {
+        signInWithPopup(auth, provider).then((result) => {
+            console.log(result.user)
+            dispatch(actions.googleLogin({
+                email: result.user.email,
+                displayName: result.user.displayName,
+                photoUrl: result.user.photoURL,
+                uid: result.user.uid
+
+            }))
+
+            navigate("/")
+        }).catch((error) => console.log(error.message))
+    }
     // Function to handle the user registration
     async function registerUser(e) {
         e.preventDefault()
@@ -33,7 +50,7 @@ export default function Signup() {
         if (email.length < 5) {
             return alert("Enter a valid email address")
         }
-        if(password !== confirmPassword){
+        if (password !== confirmPassword) {
             return toast.error("Passwords do not match. Please match your password", {
                 position: "bottom-right",
                 autoClose: 1000,
@@ -43,7 +60,7 @@ export default function Signup() {
                 draggable: false,
                 progress: undefined,
                 theme: "light",
-              })
+            })
         }
         //  Creating a new user account
         await createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
@@ -75,11 +92,11 @@ export default function Signup() {
     return (
 
         <>
-            <div className ="login-form-container">
-            <h1 className="company-name">Dont@MeShop</h1>
-            <h2 className="company-name">Create Your account</h2>
+            <div className="login-form-container">
+                <h1 className="company-name">Dont@MeShop</h1>
+                <h2 className="company-name">Create Your account</h2>
                 <form className="login-form" onSubmit={(e) => registerUser(e)}>
-                <div className="mb-3">
+                    <div className="mb-3">
                         <label htmlFor="exampleInputtext" className="form-label">
                             Name
                         </label>
@@ -135,16 +152,17 @@ export default function Signup() {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                     </div>
-
-                    <div className="mb-3 form-check"></div>
                     <button className="btn btn-primary">Register</button>
 
                     <div>
                         <span>
-                           Already a member? &nbsp; <Link to="/siginin">Login</Link>
+                            Already a member? &nbsp; <Link to="/siginin">Login</Link>
                         </span>
                     </div>
                 </form>
+                <div>
+                    <button type="button" class="btn btn-danger" onClick={siginInWithGoogle}>Siginin With Google</button>
+                </div>
             </div>
         </>
     )

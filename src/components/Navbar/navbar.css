@@ -47,9 +47,30 @@
     cursor: pointer;
 }
 
+@media only screen and (min-width: 1200px) {
+
+    .custom{
+        border-radius: 50%;
+        height: 6vh;
+        width: 6vh;
+    }
+
+    .custom2{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+}
+
 @media only screen and (max-width: 992px) {
     .button{
         margin-left: 2px !important;
         color:#fff
+    }
+
+    .custom{
+        border-radius: 50%;
+        height: 5vh;
+        width: 5vh;
     }
 }

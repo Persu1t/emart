@@ -17,7 +17,7 @@ export default function Product({ product }) {
                         <div className="col-md-8 card-body-container">
                             <div className="card-body">
                                 <Link to={`/${product.productId}`} style={{ color: "black", textDecoration: "none"}}><h5 className="card-title">{product.title}</h5></Link>
-                                <p class="card-text"> {<span>{<FaStar />}</span>}&nbsp; {product.rating.rate}</p>
+                                <p className="card-text"> {<span>{<FaStar />}</span>}&nbsp; {product.rating.rate}</p>
                             </div>
                         </div>
                     </div>

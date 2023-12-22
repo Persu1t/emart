@@ -4,12 +4,16 @@ import { productSelector } from "../../redux/productReducer";
 // importing asyncThunk() function from the productReducer
 import { fetchProductItems } from "../../redux/productReducer";
 import "./home.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Product from "../../components/Product component/product";
+// import { userSelect } from "../../redux/signupReducer";
 
 export default function Home({ searchArray, searchQuery }) {
   // destructuring data from the productReducer
   const { data } = useSelector(productSelector);
+  // const user = useSelector(userSelect)
+  // const [imageList, setImageList] = useState([])
+  // const uploadedListRef = ref(storage, `${user.uid}/`)
   console.log(data)
   const dispatch = useDispatch();
 
@@ -18,6 +22,16 @@ export default function Home({ searchArray, searchQuery }) {
   useEffect(() => {
     dispatch(fetchProductItems());
   }, [dispatch]);
+
+  // useEffect(()=>{
+  //   listAll(uploadedListRef).then((response)=>{
+  //     response.items.forEach((item)=>{
+  //       getDownloadURL(item).then((url)=>{
+  //         setImageList((prev)=> [...prev, url])
+  //       })
+  //     })
+  //   })
+  // })
 
   return (
     <>

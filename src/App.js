@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { auth } from './firebaseinit';
 // importing onAuthStateChanged from firebase/auth
 import { onAuthStateChanged } from 'firebase/auth';
+
 // importing Provider from react-redux for the store
 import { Provider } from 'react-redux'
 // importing BrowserRouter, Routes, Route, Navigate from the react-router-dom for the routing purpose
@@ -22,51 +23,78 @@ import Loader from './pages/loader/loader';
 // importing the ToastContainer from the react-toastify for the notifications
 import 'react-toastify/dist/ReactToastify.css';
 import { action } from './redux/signupReducer';
+import { actions } from './redux/googleLoginReducer';
 import Protected from './components/Protected/Protected';
 import Notuser from './components/Not user/Notuser';
 import Siginin from './pages/siginin/Siginin';
 import ProductDetailsPage from './components/ProductsDetails/productsdetails';
 import { productSelector } from './redux/productReducer';
+import Profile from './pages/profile/Profile';
 
 function App() {
-  // const[loading, setLoading] = useState(true)
+  const[loading, setLoading] = useState(true)
   // const user = useSelector(userSelect);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchArray, setSearchArray] = useState([]);
   const searchRef = useRef(null);
+  // const uploadedListRef = ref(storage, `${user.uid}`)
   const { data } = useSelector(productSelector)
   const dispatch = useDispatch();
 
   // using use effect on initial render on onAuthStateChanged so that. If state changes it must observed.
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (userCredential) => {
-      if (userCredential) {
-        // user is logged in
-        dispatch(
-          action.login({
-            email: userCredential.email,
-            displayName: userCredential.displayName,
-            uid: userCredential.uid,
-          })
-        );
-      } else {
-        dispatch(action.logout());
-      }
-    });
+    if(localStorage.getItem("User")){
+      const unsubscribe = onAuthStateChanged(auth, (userCredential) => {
+        if (userCredential) {
+          // user is logged in
+          dispatch(
+            action.login({
+              email: userCredential.email,
+              displayName: userCredential.displayName,
+              uid: userCredential.uid,
+            })
+          );
+          setLoading(false)
+        } else {
+          dispatch(action.logout());
+          setLoading(false)
+        }
+      });
+  
+      // Cleanup function to unsubscribe from the auth state changes
+      return () => {
+        unsubscribe();
+      };
+    }
+    else if(localStorage.getItem("Gmail")){
+      const unsubscribe = onAuthStateChanged(auth, (userCredential) => {
+        if (userCredential) {
+          // user is logged in
+          dispatch(
+            actions.googleLogin({
+              email: userCredential.email,
+              displayName: userCredential.displayName,
+              photoUrl : userCredential.photoURL,
+              uid: userCredential.uid,
+            })
+          );
+          setLoading(false)
+        } else {
+          dispatch(actions.googleLogout());
+          setLoading(false)
+        }
+      });
+  
+      // Cleanup function to unsubscribe from the auth state changes
+      return () => {
+        unsubscribe();
+      };
+    }
+    else{
+      setLoading(false)
+    }
 
-    // Cleanup function to unsubscribe from the auth state changes
-    return () => {
-      unsubscribe();
-    };
   }, [dispatch]);
-  // useEffect to show the loader component how much time
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      // setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   function handleSearch() {
     let qr = searchRef.current.value;
@@ -84,10 +112,11 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: "/", element: <Navbars searchRef={searchRef} handleSearch={handleSearch} />, children: [
+      path: "/", element: loading ? <Loader/> : <Navbars searchRef={searchRef} handleSearch={handleSearch} />, children: [
         { index: true, element: <Home searchArray={searchArray} searchQuery={searchQuery} /> },
         { path: "/orderhistory", element: <Protected><OrderHistory /></Protected> },
-        { path: "/cart", element: <Protected><Cart /></Protected> }
+        { path: "/cart", element: <Protected><Cart /></Protected> },
+        {path: "/profile", element:<Protected><Profile/></Protected>}
 
       ]
     },
@@ -113,3 +142,5 @@ function Root() {
 }
 
 export default Root;
+
+// <Navbars searchRef={searchRef} handleSearch={handleSearch} />

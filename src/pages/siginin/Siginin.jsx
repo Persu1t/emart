@@ -80,7 +80,6 @@ const Siginin = () => {
               onChange={(e) => setSiginPassword(e.target.value)}
             />
           </div>
-          <div className="mb-3 form-check"></div>
           <button className="btn btn-primary">Login</button>
 
           <div>
