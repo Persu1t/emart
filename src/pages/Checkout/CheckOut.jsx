@@ -27,8 +27,6 @@ const CheckOut = () => {
   },[])
   const makePayment = async(e) => {
     e.preventDefault()
-    console.log(address)
-    console.log(products)
     const options = {
       key: "rzp_test_FcZZYzIdILvpzz",
       amount: (total * 100),
@@ -37,7 +35,7 @@ const CheckOut = () => {
       description: "Test Transaction",
       image: "https://example.com/your_logo",
       handler: (res) => {
-        console.log(res);
+        toast.info(res);
       },
       prefill: {
         name: "",
@@ -54,7 +52,6 @@ const CheckOut = () => {
 
     const rzpay = new Razorpay(options);
     rzpay.open();
-    console.log(products)
     if (Array.isArray(products)) {
       products.map(async (item) => {
         const docRef = await addDoc(collection(db, `recent orders ${signedInWithEmail ? user.uid : googleUser.uid}`), {
@@ -63,7 +60,6 @@ const CheckOut = () => {
           totalPrice: item.totalPriceOfProduct,
           createdOn: new Date(),
         });
-        console.log("document reference", docRef.id);
         return docRef;
       });
     }

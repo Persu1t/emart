@@ -25,7 +25,6 @@ export default function Signup() {
 
     const siginInWithGoogle = () => {
         signInWithPopup(auth, provider).then((result) => {
-            console.log(result.user)
             dispatch(actions.googleLogin({
                 email: result.user.email,
                 displayName: result.user.displayName,
@@ -35,7 +34,7 @@ export default function Signup() {
             }))
 
             navigate("/")
-        }).catch((error) => console.log(error.message))
+        }).catch((error) => toast.error(error.message))
     }
     // Function to handle the user registration
     async function registerUser(e) {

@@ -20,8 +20,6 @@ import { actions, googleSelect } from "../../redux/googleLoginReducer"
 function Navbars({ searchRef, handleSearch }) {
     const {user, signedInWithEmail} = useSelector(userSelect)
     const { googleUser, signedInWithGmail} = useSelector(googleSelect)
-    // const user2 = useSelector(userSelect2)
-    // console.log(user2, "user2")
     const dispatch = useDispatch()
     const [imageList, setImageList] = useState([])
     const uploadedListRef = ref(storage, `${user?.uid}/`)
@@ -48,7 +46,7 @@ function Navbars({ searchRef, handleSearch }) {
         }
         signOut(auth)
             .then(() => (navigate("/")))
-            .catch((error) => console.log(error))
+            .catch((error) => toast.error("Something went wrong :("))
         toast.success("Logged out successfully", {
             position: "bottom-right",
             autoClose: 1000,

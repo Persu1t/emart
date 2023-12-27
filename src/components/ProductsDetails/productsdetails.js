@@ -30,12 +30,11 @@ function ProductDetailsPage() {
             const docRef = doc(db, "products", id);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
-                // console.log("Document data:", docSnap.data());
                 setLoading(false)
                 setProduct(docSnap.data());
             } else {
                 // docSnap.data() will be undefined in this case
-                console.log("No such document!");
+                toast.error("Something went wrong");
             }
 
         }
@@ -55,9 +54,7 @@ function ProductDetailsPage() {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        console.log(comment, "from handleFormSubmit")
         let commentObject = { Name: user.displayName, comment: comment, Img: imageList[0] }
-        console.log(commentObject)
         product.comments.unshift(commentObject)
         const docReference = doc(db, "products", id)
         await updateDoc(docReference, {
@@ -69,9 +66,7 @@ function ProductDetailsPage() {
 
     const handleFormSubmit2 = async (e) => {
         e.preventDefault()
-        console.log(comment, "from handleFormSubmit2")
         let commentObject2 = { Name: googleUser?.displayName, comment: comment, Img: googleUser?.photoUrl }
-        console.log(commentObject2)
         product.comments.unshift(commentObject2)
         const docReference = doc(db, "products", id)
         await updateDoc(docReference, {
@@ -82,7 +77,7 @@ function ProductDetailsPage() {
     }
 
     const nothing = ()=>{
-        console.log("some error that's why this runs!")
+        toast.error("Something went wrong :(")
     }
 
     const handleDecrease = () => {
