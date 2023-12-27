@@ -30,6 +30,7 @@ import Siginin from './pages/siginin/Siginin';
 import ProductDetailsPage from './components/ProductsDetails/productsdetails';
 import { productSelector } from './redux/productReducer';
 import Profile from './pages/profile/Profile';
+import CheckOut from './pages/Checkout/CheckOut';
 
 function App() {
   const[loading, setLoading] = useState(true)
@@ -116,13 +117,15 @@ function App() {
         { index: true, element: <Home searchArray={searchArray} searchQuery={searchQuery} /> },
         { path: "/orderhistory", element: <Protected><OrderHistory /></Protected> },
         { path: "/cart", element: <Protected><Cart /></Protected> },
-        {path: "/profile", element:<Protected><Profile/></Protected>}
+        {path: "/profile", element:<Protected><Profile/></Protected>},
+        { path: "/signup", element: <Notuser><Signup /></Notuser> },
+        { path: "/siginin", element: <Notuser><Siginin /></Notuser> }
 
       ]
     },
     { path: "/:id", element: <ProductDetailsPage /> },
-    { path: "/signup", element: <Notuser><Signup /></Notuser> },
-    { path: "/siginin", element: <Notuser><Siginin /></Notuser> }
+    {path: "/checkoutPage", element: <CheckOut/>}
+ 
   ])
 
   return (

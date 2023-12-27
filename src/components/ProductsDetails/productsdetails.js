@@ -11,6 +11,8 @@ import { FaRupeeSign } from "react-icons/fa";
 
 import { storage } from '../../firebaseinit';
 import { getDownloadURL, listAll, ref } from 'firebase/storage';
+import { toast } from "react-toastify";
+import { googleSelect } from "../../redux/googleLoginReducer";
 
 function ProductDetailsPage() {
     const [comment, setComment] = useState("")
@@ -18,7 +20,8 @@ function ProductDetailsPage() {
     const [quantity, setQuantity] = useState(1)
     const [imageList, setImageList] = useState([])
     const { id } = useParams()
-    const {user, user2, signedInWithEmail, signedInWithGoogle } = useSelector(userSelect)
+    const {user, signedInWithEmail } = useSelector(userSelect)
+    const { googleUser, signedInWithGmail } = useSelector(googleSelect)
     const [loading, setLoading] = useState(true)
     const uploadedListRef = ref(storage, `${user?.uid}/`)
 
@@ -61,12 +64,13 @@ function ProductDetailsPage() {
             comments: product.comments
         })
         setComment("")
+        toast.success("Your comment has been published")
     }
 
     const handleFormSubmit2 = async (e) => {
         e.preventDefault()
         console.log(comment, "from handleFormSubmit2")
-        let commentObject2 = { Name: user2?.displayName, comment: comment, Img: user2?.photoUrl }
+        let commentObject2 = { Name: googleUser?.displayName, comment: comment, Img: googleUser?.photoUrl }
         console.log(commentObject2)
         product.comments.unshift(commentObject2)
         const docReference = doc(db, "products", id)
@@ -74,6 +78,7 @@ function ProductDetailsPage() {
             comments: product.comments
         })
         setComment("")
+        toast.success("Your comment has been published")
     }
 
     const nothing = ()=>{
@@ -112,6 +117,7 @@ function ProductDetailsPage() {
                 totalPriceOfProduct: (product.price*83.43).toFixed(0)*quantity
             })
            }
+           toast.success("Product added successfully")
            localStorage.setItem("cart", JSON.stringify(cartItem));
            let cartForTotal = JSON.parse(localStorage.getItem("cart"))
            const totalPrice = cartForTotal.reduce((acc,currValue)=> acc+ currValue.totalPriceOfProduct,0)
@@ -126,6 +132,7 @@ function ProductDetailsPage() {
                 quantity: quantity,
                 totalPriceOfProduct: (product.price*83.43).toFixed(0)*quantity
             })
+            toast.success("Product added successfully")
             localStorage.setItem("cart", JSON.stringify(cartItem));
             let cartForTotal = JSON.parse(localStorage.getItem("cart"))
             const totalPrice = cartForTotal.reduce((acc,currValue)=> acc+ currValue.totalPriceOfProduct,0)
@@ -164,7 +171,7 @@ function ProductDetailsPage() {
                         </div>
                     </div>
 
-                    <form onSubmit={ signedInWithEmail ? handleFormSubmit : signedInWithGoogle ? handleFormSubmit2 : nothing}>
+                    <form onSubmit={ signedInWithEmail ? handleFormSubmit : signedInWithGmail ? handleFormSubmit2 : nothing}>
                         <div class="mb-3">
                             <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="text-help" value={comment}
                                 onChange={(e) => { setComment(e.target.value) }}

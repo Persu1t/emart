@@ -9,7 +9,7 @@
 // import { collection, addDoc } from "firebase/firestore";
 // // importing userSelect from signupReducer 
 // import { userSelect } from "../../redux/signupReducer"
-// import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import "./Addtocart.css"
 // import { toast } from 'react-toastify';
 // // importing icon from react-icons
@@ -96,7 +96,7 @@ function Cart() {
                   <p className="card-text"><FaRupeeSign /><strong>{product.price}</strong></p>
                   <p className="card-text">{product.category}</p>
                   <div className="button-container">
-                    <button className="btn btn-primary" onClick={() => handleRemoveItem(product.id)}>Remove Item</button>
+                    <button className="btn btn-danger" onClick={() => handleRemoveItem(product.id)}>Remove Item</button>
                     <div className="button-container">
                       <button className="btn btn-primary" onClick={() => handleDecrease(product.id)}>-</button>
                       <p>{product.quantity}</p>
@@ -112,6 +112,8 @@ function Cart() {
           <div className="container my-5">
             <div className="p-5 text-center bg-body-tertiary rounded-3">
               <h1 className="text-body-emphasis"><FaRupeeSign/>{cartTotal}</h1>
+              <button type="button" className="btn btn-outline-success "><Link className = "checkout-button" to="/checkoutPage">Checkout</Link></button>
+              <p><strong>Please note that you can pay upto <FaRupeeSign/> 15000. Not more than that because of razorpay cap. Thanks :)</strong></p>
             </div>
           </div>
         </>

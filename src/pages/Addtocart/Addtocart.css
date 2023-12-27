@@ -19,6 +19,15 @@
     margin-right: 0;
 }
 
+.checkout-button{
+    text-decoration: none;
+    color: #198754;
+}
+
+.checkout-button:hover{
+    color: #fff;
+}
+
 @media only screen and (max-width: 600px) {
     .cards{
         width: 85vw;
@@ -55,5 +64,7 @@
         margin-left: 0;
         margin-right: 0;
     }
+
+
 
 }

@@ -41,7 +41,6 @@ function Navbars({ searchRef, handleSearch }) {
     // function handle click for the logout
     function handleClick(e) {
         e.preventDefault()
-        localStorage.clear()
         if(signedInWithEmail){
             dispatch(action.logout())
         }else{

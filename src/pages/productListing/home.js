@@ -4,7 +4,7 @@ import { productSelector } from "../../redux/productReducer";
 // importing asyncThunk() function from the productReducer
 import { fetchProductItems } from "../../redux/productReducer";
 import "./home.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Product from "../../components/Product component/product";
 // import { userSelect } from "../../redux/signupReducer";
 

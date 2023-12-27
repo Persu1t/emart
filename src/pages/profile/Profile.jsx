@@ -37,7 +37,7 @@ const Profile = () => {
   return (
     <div className="login-form">
       <div class="mt-2">
-        <label for="formFile" class="form-label">
+        <label htmlFor="formFile" class="form-label">
          Upload Image
         </label>
         <input class="form-control" type="file" id="formFile" onChange={(e)=> setFileUpload(e.target.files[0])}/>
