@@ -13,7 +13,6 @@ import { toast } from "react-toastify";
 const CheckOut = () => {
   const { googleUser, signedInWithGmail } = useSelector(googleSelect);
   const { user, signedInWithEmail } = useSelector(userSelect);
-  const [address, setAddress] = useState("");
   const [total, setTotal] = useState(0)
   const [products, setProducts] = useState([])
   const Razorpay = useRazorpay()
@@ -125,7 +124,6 @@ const CheckOut = () => {
               id="exampleFormControlTextarea1"
               rows="3"
               placeholder="Your current address"
-              onChange={(e) => setAddress(e.target.value)}
               required
             ></textarea>
           </div>

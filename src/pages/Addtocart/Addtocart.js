@@ -112,7 +112,7 @@ function Cart() {
           <div className="container my-5">
             <div className="p-5 text-center bg-body-tertiary rounded-3">
               <h1 className="text-body-emphasis"><FaRupeeSign/>{cartTotal}</h1>
-              <button type="button" className="btn btn-outline-success "><Link className = "checkout-button" to="/checkoutPage">Checkout</Link></button>
+              {cartTotal !==0 &&<button type="button" className="btn btn-outline-success "><Link className = "checkout-button" to="/checkoutPage">Checkout</Link></button>}
               <p><strong>Please note that you can pay upto <FaRupeeSign/> 15000. Not more than that because of razorpay cap. Thanks :)</strong></p>
             </div>
           </div>
