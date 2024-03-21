@@ -41,7 +41,8 @@ function Navbars({ searchRef, handleSearch }) {
         e.preventDefault()
         if(signedInWithEmail){
             dispatch(action.logout())
-        }else{
+        }
+        if(signedInWithGmail){
             dispatch(actions.googleLogout())
         }
         signOut(auth)
@@ -78,12 +79,14 @@ function Navbars({ searchRef, handleSearch }) {
                             {signedInWithEmail || signedInWithGmail ? <li className="nav-item button" onClick={handleClick}>
                                 Logout
                             </li> : <li className="nav-item button"><Link to="/siginin" style={{ color: "white", textDecoration: "none" }}>Siginin/Siginup</Link></li>}
-                           &nbsp; <li className="nav-item">
+                           &nbsp; {signedInWithEmail ? <li className="nav-item">
                                 <Link to="/profile">
                                     {/* {user !== null ? imageList.length !== 0 ? <img src={imageList[0]} alt="hello" width="30" height="24" className="d-inline-block align-text-top custom" /> :<BsPerson/> :user2 !== null ? <img src={user2?.photoUrl} alt="back" width="30" height="24" className="d-inline-block align-text-top custom" />: null} */}
                                     {signedInWithEmail ? imageList.length !== 0 ? <img src={imageList[0]} alt="hello" width="30" height="24" className="d-inline-block align-text-top custom" />: <BsPerson/> : signedInWithGmail ? <img src={googleUser?.photoUrl} alt="back" width="30" height="24" className="d-inline-block align-text-top custom" />: null}
                                 </Link>
-                            </li>
+                            </li> : <li className="nav-item">
+                            {signedInWithGmail ? <img src={googleUser?.photoUrl} alt="back" width="30" height="24" className="d-inline-block align-text-top custom" />: <BsPerson/>}
+                                </li>}
 
 
 
