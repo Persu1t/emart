@@ -12,3 +12,12 @@
 .form-check{
     width: 20%;
 }
+
+@media only screen and (max-width: 1111px) {
+    .products-filter{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}
